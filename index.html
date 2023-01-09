@@ -224,6 +224,39 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2023/01/09/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%80%E5%A4%A9/" target="_self">
+          寒假pwn题第一天
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2023/01/09/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%80%E5%A4%A9/" target="_self">
+        <div>
+          BUUCTF刷题warmup_csaw_2016拿到题不管三七二十一先check一下，64位文件，无保护:  丢进ida64里，看汇编还是有点费劲，选择F5看伪C代码：  很容易看到第11行的gets，很明显的栈溢出。shift+f12又发现了cat flag.txt：  那局势就很明了了，标准的ret2text，双击进去，Ctrl+x发现在sub_40060D中调用了此字符串：  回到main函
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2023-01-09 16:19" pubdate>
+              2023-01-09
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2023/01/08/hello-world/" target="_self">
           Hello World
         </a>
