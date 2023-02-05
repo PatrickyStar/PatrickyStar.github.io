@@ -17,8 +17,8 @@
   <meta name="keywords" content="">
   
     <meta property="og:type" content="website">
-<meta property="og:title" content="夏白の博客">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:title" content="归档">
+<meta property="og:url" content="http://example.com/archives/2023/02/index.html">
 <meta property="og:site_name" content="夏白の博客">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="夏白">
@@ -26,7 +26,7 @@
   
   
   
-  <title>夏白の博客</title>
+  <title>归档 - 夏白の博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -80,7 +80,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 100vh;">
+<div class="header-inner" style="height: 60vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -186,17 +186,13 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="夏白の博客首页"></span>
+            <span id="subtitle" data-typed-text="归档"></span>
           
         </div>
 
         
       </div>
 
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
       
     </div>
   </div>
@@ -210,145 +206,28 @@
     
       <div class="container nopadding-x-md">
         <div id="board"
-          style="margin-top: 0">
+          >
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-
-  <div class="row mx-auto index-card">
+<div class="list-group">
+  <p class="h4">共计 4 篇文章</p>
+  <hr>
+  
+  
     
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/" target="_self">
-          寒假pwn题第三天
-        </a>
-      </h1>
-
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/" target="_self">
-        <div>
-          BUUCTF刷题jarvisoj_level2经典拿到题先check一下，32位，只开了nx保护: 12345Arch:     i386-32-littleRELRO:    Partial RELROStack:    No canary foundNX:       NX enabledPIE:      No PIE (0x8048000)  shift+f12查看字符串信息，直接看到了s
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-02-05 17:57" pubdate>
-              2023-02-05
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
+      <p class="h5">2023</p>
     
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/01/29/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%BA%8C%E5%A4%A9/" target="_self">
-          寒假pwn题第二天
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/01/29/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%BA%8C%E5%A4%A9/" target="_self">
-        <div>
-          BUUCTF刷题jarvisoj_level0首先还是check: 12345Arch:     amd64-64-littleRELRO:    No RELROStack:    No canary foundNX:       NX enabledPIE:      No PIE (0x400000)  IDA打开后，shift+f12查看字符串f看到了&#x2F;bin&#x2F;sh:
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-01-29 10:34" pubdate>
-              2023-01-29
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/01/09/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%80%E5%A4%A9/" target="_self">
-          寒假pwn题第一天
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/01/09/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%80%E5%A4%A9/" target="_self">
-        <div>
-          BUUCTF刷题warmup_csaw_2016拿到题不管三七二十一先check一下，64位文件，无保护:  丢进ida64里，看汇编还是有点费劲，选择F5看伪C代码：  很容易看到第11行的gets，很明显的栈溢出。shift+f12又发现了cat flag.txt：  那局势就很明了了，标准的ret2text，双击进去，Ctrl+x发现在sub_40060D中调用了此字符串：  回到main函
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-01-09 16:19" pubdate>
-              2023-01-09
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2023/01/08/hello-world/" target="_self">
-          Hello World
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2023/01/08/hello-world/" target="_self">
-        <div>
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2023-01-08 20:31" pubdate>
-              2023-01-08
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
+    <a href="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/" class="list-group-item list-group-item-action">
+      <time>02-05</time>
+      <div class="list-group-item-title">寒假pwn题第三天</div>
+    </a>
+  
+</div>
 
 
 
