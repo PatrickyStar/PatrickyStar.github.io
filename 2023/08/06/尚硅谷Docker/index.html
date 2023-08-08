@@ -16,62 +16,62 @@
   <meta name="author" content="夏白">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Docker基础篇一、Docker简介1. 简介 Docker的出现是为了解决代码在本机可以正常运行，而部署到其他机器不能运行的问题。这是因为代码运行所需要的环境、系统、配置、数据等不同，Docker透过镜像将程序运行所需要的系统环境由下而上打包，达到应用程序跨平台间的无缝接轨运行。 Linux 容器技术的出现就解决了这样一个问题，而 Docker 就是在它的基础上发展过来的。将应用运行在 Doc">
+    <meta name="description" content="Docker基础篇一、Docker简介1. 简介  Docker的出现是为了解决代码在本机可以正常运行，而部署到其他机器不能运行的问题。这是因为代码运行所需要的环境、系统、配置、数据等不同，Docker透过镜像将程序运行所需要的系统环境由下而上打包，达到应用程序跨平台间的无缝接轨运行。 Linux 容器技术的出现就解决了这样一个问题，而 Docker 就是在它的基础上发展过来的。将应用运行在 Do">
 <meta property="og:type" content="article">
 <meta property="og:title" content="尚硅谷Docker">
 <meta property="og:url" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/index.html">
 <meta property="og:site_name" content="夏白の博客">
-<meta property="og:description" content="Docker基础篇一、Docker简介1. 简介 Docker的出现是为了解决代码在本机可以正常运行，而部署到其他机器不能运行的问题。这是因为代码运行所需要的环境、系统、配置、数据等不同，Docker透过镜像将程序运行所需要的系统环境由下而上打包，达到应用程序跨平台间的无缝接轨运行。 Linux 容器技术的出现就解决了这样一个问题，而 Docker 就是在它的基础上发展过来的。将应用运行在 Doc">
+<meta property="og:description" content="Docker基础篇一、Docker简介1. 简介  Docker的出现是为了解决代码在本机可以正常运行，而部署到其他机器不能运行的问题。这是因为代码运行所需要的环境、系统、配置、数据等不同，Docker透过镜像将程序运行所需要的系统环境由下而上打包，达到应用程序跨平台间的无缝接轨运行。 Linux 容器技术的出现就解决了这样一个问题，而 Docker 就是在它的基础上发展过来的。将应用运行在 Do">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202132661.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202204237.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202210191.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202511890.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202526443.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202605168.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202621006.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202744481.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202905930.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203104072.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203122560.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203132250.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203209185.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203306424.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203341329.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203359409.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203412381.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203421712.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203552563.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203604410.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203614985.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203628328.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203701790.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203709595.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203724350.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203736176.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203808217.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203834643.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203910433.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203945518.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204014383.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204022446.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204056075.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204158355.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204205592.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204251531.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204336531.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204411995.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204519883.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204533636.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204550592.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204601371.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204612135.png">
-<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204717043.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202132661.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202204237.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202210191.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202511890.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202526443.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202605168.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202621006.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202744481.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202905930.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203104072.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203122560.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203132250.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203209185.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203306424.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203341329.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203359409.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203412381.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203421712.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203552563.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203604410.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203614985.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203628328.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203701790.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203709595.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203724350.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203736176.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203808217.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203834643.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203910433.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203945518.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204014383.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204022446.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204056075.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204158355.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204205592.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204251531.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204336531.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204411995.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204519883.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204533636.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204550592.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204601371.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204612135.png">
+<meta property="og:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204717043.png">
 <meta property="article:published_time" content="2023-08-06T11:14:17.000Z">
-<meta property="article:modified_time" content="2023-08-08T13:03:20.788Z">
+<meta property="article:modified_time" content="2023-08-08T13:08:55.948Z">
 <meta property="article:author" content="夏白">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces/hexo/source_posts/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202132661.png">
+<meta name="twitter:image" content="http://example.com/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202132661.png">
   
   
   
@@ -318,11 +318,14 @@
             
               <div class="markdown-body">
                 
-                <h1 id="Docker基础篇"><a href="#Docker基础篇" class="headerlink" title="Docker基础篇"></a>Docker基础篇</h1><h2 id="一、Docker简介"><a href="#一、Docker简介" class="headerlink" title="一、Docker简介"></a>一、<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Docker&spm=1001.2101.3001.7020">Docker</a>简介</h2><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808202132661.png" srcset="/img/loading.gif" lazyload alt="image-20230808202132661"></p>
+                <h1 id="Docker基础篇"><a href="#Docker基础篇" class="headerlink" title="Docker基础篇"></a>Docker基础篇</h1><h2 id="一、Docker简介"><a href="#一、Docker简介" class="headerlink" title="一、Docker简介"></a>一、<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Docker&spm=1001.2101.3001.7020">Docker</a>简介</h2><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202132661.png" srcset="/img/loading.gif" lazyload class title="image-20230808202132661">
+
 <p>Docker的出现是为了解决代码在本机可以正常运行，而部署到其他机器不能运行的问题。这是因为代码运行所需要的环境、系统、配置、数据等不同，Docker透过镜像将程序运行所需要的系统环境由下而上打包，达到应用程序跨平台间的无缝接轨运行。</p>
 <p>Linux 容器技术的出现就解决了这样一个问题，而 Docker 就是在它的基础上发展过来的。将应用运行在 Docker 容器上面，而 Docker 容器在任何操作系统上都是一致的，这就实现了跨平台、跨服务器。只需要一次配置好环境，换到别的机子上就可以一键部署好，大大简化了操作。</p>
-<h3 id="2-Docker与传统虚拟化方式的不同"><a href="#2-Docker与传统虚拟化方式的不同" class="headerlink" title="2. Docker与传统虚拟化方式的不同"></a>2. Docker与传统虚拟化方式的不同</h3><p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808202204237.png" srcset="/img/loading.gif" lazyload alt="image-20230808202204237"></p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808202210191.png" srcset="/img/loading.gif" lazyload alt="image-20230808202210191"></p>
+<h3 id="2-Docker与传统虚拟化方式的不同"><a href="#2-Docker与传统虚拟化方式的不同" class="headerlink" title="2. Docker与传统虚拟化方式的不同"></a>2. Docker与传统虚拟化方式的不同</h3><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202204237.png" srcset="/img/loading.gif" lazyload class title="image-20230808202204237">
+
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202210191.png" srcset="/img/loading.gif" lazyload class title="image-20230808202210191">
+
 <p>1.传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程</p>
 <p>2.而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，而且也没有进行硬件虚拟。因此容器要比传统虚拟机更为轻便</p>
 <p>3.每个容器之间互相隔离，每个容器有自己的文件系统 ，容器之间进程不会相互影响，能区分计算资源</p>
@@ -343,15 +346,19 @@
 <h3 id="4-测试"><a href="#4-测试" class="headerlink" title="(4) 测试"></a>(4) 测试</h3><ul>
 <li><code>docker run hello-world</code>：运行hello world</li>
 </ul>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808202511890.png" srcset="/img/loading.gif" lazyload alt="image-20230808202511890"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202511890.png" srcset="/img/loading.gif" lazyload class title="image-20230808202511890">
+
 <p>运行镜像的流程:</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808202526443.png" srcset="/img/loading.gif" lazyload alt="image-20230808202526443"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202526443.png" srcset="/img/loading.gif" lazyload class title="image-20230808202526443">
+
 <h2 id="二、Docker常用命令"><a href="#二、Docker常用命令" class="headerlink" title="二、Docker常用命令"></a>二、Docker常用命令</h2><h3 id="1-docker帮助命令"><a href="#1-docker帮助命令" class="headerlink" title="1.docker帮助命令"></a>1.docker帮助命令</h3><h4 id="1-查看docker版本"><a href="#1-查看docker版本" class="headerlink" title="(1) 查看docker版本"></a>(1) 查看docker版本</h4><p>docker version：查看版本信息</p>
 <h4 id="2-查看docker信息"><a href="#2-查看docker信息" class="headerlink" title="(2) 查看docker信息"></a>(2) 查看docker信息</h4><p>docker info：查看docker信息</p>
 <h4 id="3-docker帮助命令"><a href="#3-docker帮助命令" class="headerlink" title="(3) docker帮助命令"></a>(3) docker帮助命令</h4><p>docker –help：帮助命令</p>
-<h4 id="2-docker镜像命令"><a href="#2-docker镜像命令" class="headerlink" title="2.docker镜像命令"></a>2.docker镜像命令</h4><p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808202605168.png" srcset="/img/loading.gif" lazyload alt="image-20230808202605168"></p>
+<h4 id="2-docker镜像命令"><a href="#2-docker镜像命令" class="headerlink" title="2.docker镜像命令"></a>2.docker镜像命令</h4><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202605168.png" srcset="/img/loading.gif" lazyload class title="image-20230808202605168">
+
 <h4 id="1-列出所有镜像"><a href="#1-列出所有镜像" class="headerlink" title="(1) 列出所有镜像"></a>(1) 列出所有镜像</h4><p>docker images：列出本地主机上的镜像，镜像由镜像名:tag唯一标记，tag可认为是版本号<br>docker images -a：列出本地所有的镜像（含中间映像层）<br>docker images -q：只显示镜像的id<br>docker images –digests：显示镜像的摘要信息<br>docker images –no-trunc：显示完整的镜像信息</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808202621006.png" srcset="/img/loading.gif" lazyload alt="image-20230808202621006"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202621006.png" srcset="/img/loading.gif" lazyload class title="image-20230808202621006">
+
 <p>选项说明：</p>
 <p>REPOSITORY：表示镜像的仓库源<br>TAG：镜像的标签<br>IMAGE ID：镜像ID<br>CREATED：镜像创建时间<br>SIZE：镜像大小</p>
 <h4 id="2-在github搜索镜像"><a href="#2-在github搜索镜像" class="headerlink" title="(2) 在github搜索镜像"></a>(2) 在github搜索镜像</h4><p>docker search 镜像名：在github上搜索某个镜像<br>docker search -s 30 tomcat：列出starts数不小于30的镜像<br>docker search –no-trunc 镜像名：显示完整的镜像描述<br>docker –automated 镜像名：只列出automated build类型的镜像</p>
@@ -363,7 +370,8 @@
 <p>docker run -i 镜像名：以交互模式运行容器，通常与-t同时使用<br>docker run -t 镜像名：为容器重新分配一个伪输入终端，通常与-i同时使用</p>
 <p>docker run -d 镜像名：后台运行容器，并返回容器id，即启动守护式容器<br>docker run -P 镜像名： 随机端口映射<br>docker run -p 镜像名： 指定端口映射，有以下四种格式:</p>
 <p>​    ip:hostPort:containerPort<br>​    ip::containerPort<br>​    hostPort:containerPort<br>​    containerPort</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808202744481.png" srcset="/img/loading.gif" lazyload alt="image-20230808202744481"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202744481.png" srcset="/img/loading.gif" lazyload class title="image-20230808202744481">
+
 <h4 id="2-列出正在运行的容器"><a href="#2-列出正在运行的容器" class="headerlink" title="(2) 列出正在运行的容器"></a>(2) 列出正在运行的容器</h4><p>docker ps：列出当前所有正在运行的容器</p>
 <h4 id="3-列出历史上运行过的容器"><a href="#3-列出历史上运行过的容器" class="headerlink" title="(3) 列出历史上运行过的容器"></a>(3) 列出历史上运行过的容器</h4><p>docker ps -a：列出当前所有正在运行的容器+历史上运行过的容器<br>docker ps -l：显示最近创建的容器<br>docker ps -n 数字：显示最近创建的n个容器<br>docker ps -q：静默模式，只显示容器编号<br>docker ps –no-trunc：不截断输出</p>
 <h4 id="4-退出容器"><a href="#4-退出容器" class="headerlink" title="(4) 退出容器"></a>(4) 退出容器</h4><p>exit：容器停止退出<br>Ctrl+P+Q：容器不停止退出</p>
@@ -379,7 +387,9 @@
 <h4 id="9-查看容器内的进程"><a href="#9-查看容器内的进程" class="headerlink" title="(9) 查看容器内的进程"></a>(9) 查看容器内的进程</h4><p>docker top 容器名：查看容器内的进程</p>
 <h4 id="10-查看容器内部细节"><a href="#10-查看容器内部细节" class="headerlink" title="(10) 查看容器内部细节"></a>(10) 查看容器内部细节</h4><p>docker inspect 容器名：查看容器内部细节，返回是json串</p>
 <h4 id="11-进入正在运行的容器并以命令行交互"><a href="#11-进入正在运行的容器并以命令行交互" class="headerlink" title="(11) 进入正在运行的容器并以命令行交互"></a>(11) 进入正在运行的容器并以命令行交互</h4><p>docker exec -it 容器名 bash命令：在容器中打开新的终端，并可以启动新的进程<br>docker exec -it 容器名 ls -l &#x2F;tmp：不进入容器，直接拿到ls -l &#x2F;tmp命令的执行结果，等价于使用docker exec -it 容器名 &#x2F;bin&#x2F;bash先进入bash，再执行ls -l &#x2F;tmp得到结果<br>docker attach 容器名：直接进入容器启动命令的终端，不会启动新的进程</p>
-<h4 id="12-拷贝容器内容到本机"><a href="#12-拷贝容器内容到本机" class="headerlink" title="(12) 拷贝容器内容到本机"></a>(12) 拷贝容器内容到本机</h4><p>docker cp 容器名:容器中文件的路径 本机路径：从容器内拷贝文件到本机上<br><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808202905930.png" srcset="/img/loading.gif" lazyload alt="image-20230808202905930"></p>
+<h4 id="12-拷贝容器内容到本机"><a href="#12-拷贝容器内容到本机" class="headerlink" title="(12) 拷贝容器内容到本机"></a>(12) 拷贝容器内容到本机</h4><p>docker cp 容器名:容器中文件的路径 本机路径：从容器内拷贝文件到本机上</p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808202905930.png" srcset="/img/loading.gif" lazyload class title="image-20230808202905930">
+
 <h2 id="三、Docker镜像"><a href="#三、Docker镜像" class="headerlink" title="三、Docker镜像"></a>三、Docker镜像</h2><h3 id="1-联合文件系统（UnionFS）"><a href="#1-联合文件系统（UnionFS）" class="headerlink" title="1.联合文件系统（UnionFS）"></a>1.联合文件系统（UnionFS）</h3><p>UnionFS是一种分层、轻量级并且高性能的文件系统，它支持对文件系统的修改作为一次提交来一层层的叠加，同时可以将不同目录挂载到同一个虚拟文件系统下，UnionFS是docker镜像的基础，镜像可以通过分层来进行继承，基于基础镜像（没有父镜像），可以制作各种具体的应用镜像。</p>
 <p>特性：一次同时加载多个文件系统，但从外面看起来，只能看到一个文件系统该，联合加载会把各层文件系统叠加起来，这样最终的文件系统会包含所有底层的文件和目录。</p>
 <h3 id="2-docker镜像加载原理"><a href="#2-docker镜像加载原理" class="headerlink" title="2.docker镜像加载原理"></a>2.docker镜像加载原理</h3><p>docker的镜像实际上是由一层层的文件系统组成，这种层级的文件系统就是UnionFS</p>
@@ -388,26 +398,35 @@
 <p>对于一个精简的OS，rootfs可以很小，只需要包括最基本的命令、工具和程序库就可以了，因为底层直接用Host的kernel，自己只需要提供rootfs就行了。所以对于不同的Linux发行版，bootfs基本是一致的，rootfs会有差别，因此不同的发行版可以共用bootfs。</p>
 <h3 id="3-镜像的特点和优点"><a href="#3-镜像的特点和优点" class="headerlink" title="3.镜像的特点和优点"></a>3.镜像的特点和优点</h3><h4 id="1-镜像的特点"><a href="#1-镜像的特点" class="headerlink" title="(1) 镜像的特点"></a>(1) 镜像的特点</h4><p>docker镜像都是只读的，当容器启动时，一个新的可写层被加载到镜像的顶部，这一层通常被称作“容器层”，“容器层”之下的为“镜像层”。</p>
 <h4 id="2-分层镜像的优点"><a href="#2-分层镜像的优点" class="headerlink" title="(2) 分层镜像的优点"></a>(2) 分层镜像的优点</h4><p>使用分层镜像的优点是可以共享资源，比如有多个镜像都从相同的base镜像构建而来，那么宿主机上只需要保存一份base镜像，内存中也只需要加载一份base镜像，就可以为所有容器服务了。镜像的每一层都可以被共享。 以pull为例，在下载的过程中可以看到docker的镜像好像是在一层一层的在下载。</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203104072.png" srcset="/img/loading.gif" lazyload alt="image-20230808203104072"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203104072.png" srcset="/img/loading.gif" lazyload class title="image-20230808203104072">
+
 <h3 id="4-镜像提交"><a href="#4-镜像提交" class="headerlink" title="4.镜像提交"></a>4.镜像提交</h3><h4 id="1-commit命令"><a href="#1-commit命令" class="headerlink" title="(1) commit命令"></a>(1) commit命令</h4><p>docker commit -m&#x3D;”提交的描述信息” -a&#x3D;”作者” 容器名 要创建的目标镜像名:[TAG]：提交容器副本使之成为一个新的镜像</p>
 <h4 id="2-镜像提交实例"><a href="#2-镜像提交实例" class="headerlink" title="(2) 镜像提交实例"></a>(2) 镜像提交实例</h4><p>docker run -it -p 8080:8080 tomcat：从hub上下载tomcat镜像到本地并运行</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203122560.png" srcset="/img/loading.gif" lazyload alt="image-20230808203122560"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203122560.png" srcset="/img/loading.gif" lazyload class title="image-20230808203122560">
+
 <p>故意删除上一步镜像生产tomcat容器的文档</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203132250.png" srcset="/img/loading.gif" lazyload alt="image-20230808203132250"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203132250.png" srcset="/img/loading.gif" lazyload class title="image-20230808203132250">
+
 <p><code>docker commit -a=&quot;zuzhiang&quot; -m=&quot;del tomcat docs&quot; 容器名 atguigu/tomcat/02:1.2</code>：以它为模板提交一个没有文档的tomcat新镜像<code>atguigu/tomcat02</code></p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203209185.png" srcset="/img/loading.gif" lazyload alt="image-20230808203209185"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203209185.png" srcset="/img/loading.gif" lazyload class title="image-20230808203209185">
+
 <p><code>docker run -it -p 7777:8080 atguigu/tomcat02:1.2</code>：启动新镜像并访问<code>localhost:7777/docs</code>界面，可以发现与原镜像相比无文档</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203306424.png" srcset="/img/loading.gif" lazyload alt="image-20230808203306424"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203306424.png" srcset="/img/loading.gif" lazyload class title="image-20230808203306424">
+
 <h2 id="四、容器数据卷"><a href="#四、容器数据卷" class="headerlink" title="四、容器数据卷"></a>四、容器数据卷</h2><h3 id="1-容器数据卷"><a href="#1-容器数据卷" class="headerlink" title="1.容器数据卷"></a>1.容器数据卷</h3><h4 id="1-是什么"><a href="#1-是什么" class="headerlink" title="(1) 是什么"></a>(1) 是什么</h4><p>容器删除后数据自然也就没有了，所以用卷来保存数据。容器数据卷功能是持久化和数据共享。 卷就是目录或文件，存在于一个或多个容器中，由docker挂载到容器，但不属于联合文件系统，因此能够绕过Union File Syste提供一些用于持续存储或共享数据的特性。</p>
 <h4 id="2-容器数据卷的特点"><a href="#2-容器数据卷的特点" class="headerlink" title="(2) 容器数据卷的特点"></a>(2) 容器数据卷的特点</h4><p>数据卷可以在容器之间共享或重用数据<br>卷中的更改可以直接生效<br>数据卷中的更改不会包含在镜像的更新中<br>数据卷的生命周期一直持续到没有容器使用它为止</p>
 <h3 id="2-容器内添加数据卷"><a href="#2-容器内添加数据卷" class="headerlink" title="2.容器内添加数据卷"></a>2.容器内添加数据卷</h3><h4 id="1-直接命令添加"><a href="#1-直接命令添加" class="headerlink" title="(1) 直接命令添加"></a>(1) 直接命令添加</h4><p>docker run -it -v &#x2F;宿主机绝对路径:&#x2F;容器内目录[:ro] 镜像名 .：将宿主机的目录和容器内目录绑定，之后对宿主机或容器内相应文件夹的内容添加和修改就是同步的了。容器每次启动后会将数据同步。添加:ro时表示是只读模式，宿主机可以添加和修改文件，但是容器内不可以。</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203341329.png" srcset="/img/loading.gif" lazyload alt="image-20230808203341329"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203341329.png" srcset="/img/loading.gif" lazyload class title="image-20230808203341329">
+
 <p><code>docker inspect 容器名</code>：查看数据卷是否挂载成功，其中Volumes里面有绑定的目录</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203359409.png" srcset="/img/loading.gif" lazyload alt="image-20230808203359409"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203359409.png" srcset="/img/loading.gif" lazyload class title="image-20230808203359409">
+
 <p>容器和宿主机之间数据共享</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203412381.png" srcset="/img/loading.gif" lazyload alt="image-20230808203412381"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203412381.png" srcset="/img/loading.gif" lazyload class title="image-20230808203412381">
+
 <p>容器停止后，宿主机修改数据是否同步</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203421712.png" srcset="/img/loading.gif" lazyload alt="image-20230808203421712"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203421712.png" srcset="/img/loading.gif" lazyload class title="image-20230808203421712">
+
 <p>如果无权限，则使用<code>docker run -it -v /宿主机绝对路径:/容器内目录 --privileged=true 镜像名 .</code>即可</p>
 <h4 id="2-dockerFile添加"><a href="#2-dockerFile添加" class="headerlink" title="(2) dockerFile添加"></a>(2) dockerFile添加</h4><p>dockerFile是镜像的描述文件</p>
 <p>根目录下新建<code>mydocker</code>文件夹并进入</p>
@@ -416,34 +435,44 @@
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-keyword">FROM</span> centos<br><span class="hljs-keyword">VOLUME</span><span class="language-bash"> [<span class="hljs-string">&quot;/dataVolumeContainer1&quot;</span>,<span class="hljs-string">&quot;/dataVolumeContainer2&quot;</span>]</span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;finished,--------success1&quot;</span></span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> /bin/bash</span><br></code></pre></td></tr></table></figure>
 
 <p><code>docker build -f /mydocker/dockerfile -t zza/centos</code>：build后生成镜像，获得一个新镜像<code>zza/centos</code></p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203552563.png" srcset="/img/loading.gif" lazyload alt="image-20230808203552563"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203552563.png" srcset="/img/loading.gif" lazyload class title="image-20230808203552563">
+
 <p><code>docker run -it zza/centos</code>：运行容器，容器内自带两个容器数据卷，对应的宿主机的目录默认，可以通过<code>docker inspect</code>查看</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203604410.png" srcset="/img/loading.gif" lazyload alt="image-20230808203604410"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203604410.png" srcset="/img/loading.gif" lazyload class title="image-20230808203604410">
+
 <h2 id="3-数据卷容器"><a href="#3-数据卷容器" class="headerlink" title="3. 数据卷容器"></a>3. 数据卷容器</h2><h3 id="1-是什么-1"><a href="#1-是什么-1" class="headerlink" title="(1) 是什么"></a>(1) 是什么</h3><p>命名的容器挂载数据卷，其它容器通过挂载这个(父容器)实现数据共享，挂载数据卷的容器，称之为数据卷容器。</p>
 <h3 id="2-容器间传递共享"><a href="#2-容器间传递共享" class="headerlink" title="(2) 容器间传递共享"></a>(2) 容器间传递共享</h3><ul>
 <li>先启动一个父容器：<code>docker run -it --name dc01 zza/centos</code></li>
 </ul>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203614985.png" srcset="/img/loading.gif" lazyload alt="image-20230808203614985"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203614985.png" srcset="/img/loading.gif" lazyload class title="image-20230808203614985">
+
 <p>dc02继承自dc01：<code>docker run -it --name dc02 --volumes-from dc01 zza/centos</code></p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203628328.png" srcset="/img/loading.gif" lazyload alt="image-20230808203628328"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203628328.png" srcset="/img/loading.gif" lazyload class title="image-20230808203628328">
+
 <p>回到dc01可以看到02&#x2F;03各自添加的都能共享了</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203701790.png" srcset="/img/loading.gif" lazyload alt="image-20230808203701790"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203701790.png" srcset="/img/loading.gif" lazyload class title="image-20230808203701790">
+
 <p>删除dc01，dc02修改后dc03可否访问</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203709595.png" srcset="/img/loading.gif" lazyload alt="image-20230808203709595"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203709595.png" srcset="/img/loading.gif" lazyload class title="image-20230808203709595">
+
 <p>删除dc02后dc03可否访问</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203724350.png" srcset="/img/loading.gif" lazyload alt="image-20230808203724350"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203724350.png" srcset="/img/loading.gif" lazyload class title="image-20230808203724350">
+
 <p>新建dc04继承dc03后再删除dc03</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203736176.png" srcset="/img/loading.gif" lazyload alt="image-20230808203736176"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203736176.png" srcset="/img/loading.gif" lazyload class title="image-20230808203736176">
+
 <p>结论：</p>
 <p>父子容器之间数据共享，删除父容器后，修改某一子容器会响应其兄弟元素<br>容器之间配置信息的传递，数据卷生命周期一直持续到没有容器使用它为止</p>
 <h2 id="五、DockerFile解析"><a href="#五、DockerFile解析" class="headerlink" title="五、DockerFile解析"></a>五、DockerFile解析</h2><h3 id="1-DockerFile"><a href="#1-DockerFile" class="headerlink" title="1.DockerFile"></a>1.DockerFile</h3><h4 id="1-是什么-2"><a href="#1-是什么-2" class="headerlink" title="(1) 是什么"></a>(1) 是什么</h4><p>dockerFile是用来构建docker镜像的构建文件，是由一系列命令和参数构成的脚本。 Dockerfile定义了进程需要的一切东西。Dockerfile涉及的内容包括执行代码或者是文件、环境变量、依赖包、运行时环境、动态链接库、操作系统的发行版、服务进程和内核进程(当应用进程需要和系统服务和内核进程打交道，这时需要考虑如何设计namespace的权限控制)等等</p>
-<h4 id="2-构建三步骤"><a href="#2-构建三步骤" class="headerlink" title="(2) 构建三步骤"></a>(2) 构建三步骤</h4><p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203808217.png" srcset="/img/loading.gif" lazyload alt="image-20230808203808217"></p>
+<h4 id="2-构建三步骤"><a href="#2-构建三步骤" class="headerlink" title="(2) 构建三步骤"></a>(2) 构建三步骤</h4><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203808217.png" srcset="/img/loading.gif" lazyload class title="image-20230808203808217">
+
 <p>编写DockerFile文件</p>
 <p>docker build</p>
 <p>docker run</p>
 <h4 id="3-DockerFile内容基础知识"><a href="#3-DockerFile内容基础知识" class="headerlink" title="(3) DockerFile内容基础知识"></a>(3) DockerFile内容基础知识</h4><p>每条保留字指令都必须为大写字母且后面要跟随至少一个参数<br>指令从上到下顺序执行<br>#表示注释<br>每条指令都会创建一个新的镜像层，并对镜像进行提交</p>
 <h4 id="4-docker运行dockerFile的大致流程："><a href="#4-docker运行dockerFile的大致流程：" class="headerlink" title="(4) docker运行dockerFile的大致流程："></a>(4) docker运行dockerFile的大致流程：</h4><p>docker从基础镜像运行一个容器<br>执行一条指令并对容器做出修改<br>执行类似docker commit的操作提交一个新的镜像层<br>docker再基于刚提交的镜像运行一个新容器<br>执行dockerFile中的下一条指令知道所有指令都执行完成</p>
-<h3 id="2-保留字指令"><a href="#2-保留字指令" class="headerlink" title="2.保留字指令"></a>2.保留字指令</h3><p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203834643.png" srcset="/img/loading.gif" lazyload alt="image-20230808203834643"></p>
+<h3 id="2-保留字指令"><a href="#2-保留字指令" class="headerlink" title="2.保留字指令"></a>2.保留字指令</h3><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203834643.png" srcset="/img/loading.gif" lazyload class title="image-20230808203834643">
+
 <p>FROM：基础镜像，当前镜像是基于哪个镜像的</p>
 <p>MAINTAINER：镜像维护者的姓名和邮箱地址</p>
 <p>RUN：容器构建时需要运行的命令</p>
@@ -454,19 +483,24 @@
 <p>COPY：类似ADD，拷贝文件和目录到镜像中。将从构建上下文目录中&lt;源文件&gt;的文件&#x2F;目录复制到镜像内的&lt;目标路径&gt;位置</p>
 <p>VOLUME：容器数据卷，用于数据保存和持久化工作</p>
 <p>CMD：指定一个容器启动时要运行的命令，DockerFile中可以有多个CMD命令，但只有最后一个生效，CMD会被docker run之后的参数替换</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203910433.png" srcset="/img/loading.gif" lazyload alt="image-20230808203910433"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203910433.png" srcset="/img/loading.gif" lazyload class title="image-20230808203910433">
+
 <p>ENTRYPOINT：指定一个容器启动时要运行的命令，ENTRYPOINT的目的和CMD一样，都是指定容器启动程序及参数</p>
 <p>ONBUILD：当构建一个被继承的DockerFile时运行命令，父镜像在被子镜像继承后父镜像的onbuild被触发3. 案例</p>
 <h4 id="1-自定义镜像mycentos"><a href="#1-自定义镜像mycentos" class="headerlink" title="(1) 自定义镜像mycentos"></a>(1) 自定义镜像mycentos</h4><h5 id="编写"><a href="#编写" class="headerlink" title="编写"></a>编写</h5><p>默认CentOS镜像的情况</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808203945518.png" srcset="/img/loading.gif" lazyload alt="image-20230808203945518"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808203945518.png" srcset="/img/loading.gif" lazyload class title="image-20230808203945518">
+
 <p>编写DokerFile文件</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-keyword">FROM</span> centos<br><span class="hljs-keyword">MAINTAINER</span> zuzhiang&lt;zuzhiang@<span class="hljs-number">126</span>.com&gt;<br><br><span class="hljs-keyword">ENV</span> MYPATH /tmp<br><span class="hljs-keyword">WORKDIR</span><span class="language-bash"> <span class="hljs-variable">$MYPATH</span></span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> yum -y install vim</span><br><span class="hljs-keyword">RUN</span><span class="language-bash"> yum -y install net-tools</span><br><br><span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">80</span><br><br><span class="hljs-keyword">CMD</span><span class="language-bash"> <span class="hljs-built_in">echo</span> <span class="hljs-variable">$MYPATH</span></span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;success    ok&quot;</span></span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> /bin/bash</span><br></code></pre></td></tr></table></figure>
 
 <h5 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h5><p><code>docker build -t mycentos:1.3</code></p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204014383.png" srcset="/img/loading.gif" lazyload alt="image-20230808204014383"></p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204022446.png" srcset="/img/loading.gif" lazyload alt="image-20230808204022446"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204014383.png" srcset="/img/loading.gif" lazyload class title="image-20230808204014383">
+
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204022446.png" srcset="/img/loading.gif" lazyload class title="image-20230808204022446">
+
 <h5 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h5><p><code>docker run -it mycentos:1.3</code></p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204056075.png" srcset="/img/loading.gif" lazyload alt="image-20230808204056075"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204056075.png" srcset="/img/loading.gif" lazyload class title="image-20230808204056075">
+
 <p>镜像变更历史<br><code>docker history</code> 镜像名：列出镜像变更历史</p>
 <h5 id="2-CMD-x2F-ENTRYPOINT镜像案例"><a href="#2-CMD-x2F-ENTRYPOINT镜像案例" class="headerlink" title="(2) CMD&#x2F;ENTRYPOINT镜像案例"></a>(2) CMD&#x2F;ENTRYPOINT镜像案例</h5><p><strong>相同点</strong><br>都是指定一个容器启动时要运行的命令</p>
 <p><strong>CMD</strong><br>DockerFile中可以有多个CMD指令，但只有最后一个生效，CMD会被docker run之后的参数替换。在tomcat容器dockerFile的最后一行是<code>CMD [&quot;catalina.sh&quot;,&quot;run&quot;]</code>，但如果<code>docker run -it tomcat ls -l</code>时，则命令行参数会把最后一行CMD命令给替换，导致tomcat不能正常启动</p>
@@ -474,15 +508,18 @@
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-keyword">FROM</span> centos<br><span class="hljs-keyword">RUN</span><span class="language-bash"> yum install -y curl</span><br><span class="hljs-comment"># curl命令可以用来执行下载、发送各种HTTP请求，指定HTTP头部等操作</span><br><span class="hljs-comment"># 执行后，www.baidu.com的html就会显示在屏幕上了</span><br><span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;curl&quot;</span>,<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;http://ip.cn&quot;</span>]</span><br></code></pre></td></tr></table></figure>
 
 <p><code>docker build -f dockerfile4 -t myip</code>：构建</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204158355.png" srcset="/img/loading.gif" lazyload alt="image-20230808204158355"></p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204205592.png" srcset="/img/loading.gif" lazyload alt="image-20230808204205592"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204158355.png" srcset="/img/loading.gif" lazyload class title="image-20230808204158355">
+
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204205592.png" srcset="/img/loading.gif" lazyload class title="image-20230808204205592">
+
 <p><strong>ENTRYPOINT</strong></p>
 <p><code>docker run</code>之后的参数会被当作参数传递给ENTRYPOINT，之后形成新的命令组合</p>
 <p><strong>ENTRYPOINT版查询IP信息的容器</strong>*</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-keyword">FROM</span> centos<br><span class="hljs-keyword">RUN</span><span class="language-bash"> yum install -y curl</span><br><span class="hljs-keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="hljs-string">&quot;curl&quot;</span>,<span class="hljs-string">&quot;-s&quot;</span>,<span class="hljs-string">&quot;http://ip.cn&quot;</span>]</span><br><span class="hljs-comment"># 被继承时，直接在子dockerFile中&quot;FROM 容器名&quot;进行继承</span><br><span class="hljs-keyword">ONBUILD</span> <span class="hljs-keyword">RUN</span><span class="language-bash"> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;father images onbuild.&quot;</span></span><br></code></pre></td></tr></table></figure>
 
 <p>先build自己镜像myip，然后运行<code>docker run -it myip -i</code>，变成了执行<code>curl -s -i http://ip.cn</code>命令</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204251531.png" srcset="/img/loading.gif" lazyload alt="image-20230808204251531"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204251531.png" srcset="/img/loading.gif" lazyload class title="image-20230808204251531">
+
 <h4 id="3-自定义镜像Tomcat9"><a href="#3-自定义镜像Tomcat9" class="headerlink" title="(3) 自定义镜像Tomcat9"></a>(3) 自定义镜像Tomcat9</h4><ul>
 <li>创建工作目录：<code>mkdir -p /mydockerfile/tomcat9</code></li>
 <li>新建txt文件：<code>touch c.txt</code></li>
@@ -496,13 +533,15 @@
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs awk">FROM centos<br>MAINTAINER zuzhiang&lt;zuzhiang@<span class="hljs-number">126</span>.com&gt;<br><span class="hljs-comment"># 把宿主机当前上下文的c.txt靠背巾容器/usr/local/路径下</span><br>COPY c.txt <span class="hljs-regexp">/usr/</span>local/cincontainer.txt<br><span class="hljs-comment"># 把javahetomcat添加到容器内</span><br>ADD jdk-<span class="hljs-number">8</span>u171-linux-x64.tar.gz <span class="hljs-regexp">/usr/</span>local<br>ADD apache-tomcat-<span class="hljs-number">9.0</span>.<span class="hljs-number">8</span>.tar.gz<br><span class="hljs-comment"># 安装vim编辑器</span><br>RUN yum -y install vim<br>ENV MYPATH <span class="hljs-regexp">/usr/</span>local<br>WORKDIR <span class="hljs-variable">$MYPATH</span><br><span class="hljs-comment"># 配置java和tomcat环境变量</span><br>ENV JAVA_HOME <span class="hljs-regexp">/usr/</span>local/jdk1.<span class="hljs-number">8.0</span>_171<br>ENV CLASSPATH <span class="hljs-variable">$JAVA_HOME</span><span class="hljs-regexp">/lib/</span>dt.jar:<span class="hljs-variable">$JAVA_HOME</span><span class="hljs-regexp">/lib/</span>tools.jar<br>ENV CATALINA_HOME <span class="hljs-regexp">/usr/</span>local/apache-tomcat-<span class="hljs-number">9.0</span>.<span class="hljs-number">8</span><br>ENV CATALINA_BASE <span class="hljs-regexp">/usr/</span>local/apache-tomcat-<span class="hljs-number">9.0</span>.<span class="hljs-number">8</span><br>ENV PATH <span class="hljs-variable">$PATH</span>:<span class="hljs-variable">$JAVA_HOME</span><span class="hljs-regexp">/bin:$CATALINA_HOME/</span>lib:<span class="hljs-variable">$CATALINA_HOME</span>/bin<br><span class="hljs-comment"># 容器运行时的监听的端口</span><br>ENVEXPOSE <span class="hljs-number">8080</span><br><span class="hljs-comment"># ENTRYPOINT [&quot;/usr/local/apache-tomcat-9.0.8/bin/startup.sh&quot;]</span><br><span class="hljs-comment"># CMD [&quot;/usr/local/apache-tomcat-9.0.8/bin/catalina.sh&quot;,&quot;run&quot;]</span><br>CMD <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/apache-tomcat-9.0.8/</span>bin<span class="hljs-regexp">/startup.sh &amp;&amp; tail -F /u</span>sr<span class="hljs-regexp">/local/</span>apache-tomcat-<span class="hljs-number">9.0</span>.<span class="hljs-number">8</span><span class="hljs-regexp">/bin/</span>logs/catalina.out<br></code></pre></td></tr></table></figure>
 
 <p>构建：<code>docker build -t zzatomcat9</code> </p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204336531.png" srcset="/img/loading.gif" lazyload alt="image-20230808204336531"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204336531.png" srcset="/img/loading.gif" lazyload class title="image-20230808204336531">
+
 <p>运行：<code>docker run -d -p 9080:8080 --name myt9 -v /mydockerfile/tomcat9/test:/usr/local/apache-tomcat-9.0.8/webapps/test -v /mydockerfile/tomcat9/tomcat9logs/:/usr/local/apache-tomcat-9.0.8/logs --privileged=true zzatomcat9</code></p>
 <p>验证：在浏览器访问localhost:9080</p>
 <h4 id="4-综合前面的tomcat容器卷将测试的web服务test发布"><a href="#4-综合前面的tomcat容器卷将测试的web服务test发布" class="headerlink" title="(4) 综合前面的tomcat容器卷将测试的web服务test发布"></a>(4) 综合前面的tomcat容器卷将测试的web服务test发布</h4><ul>
 <li>总体概述</li>
 </ul>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204411995.png" srcset="/img/loading.gif" lazyload alt="image-20230808204411995"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204411995.png" srcset="/img/loading.gif" lazyload class title="image-20230808204411995">
+
 <p><em>在mydockerfile&#x2F;tomcat9&#x2F;test下</em></p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs stata"># 在mydockerfile/tomcat9/<span class="hljs-keyword">test</span>下<br><span class="hljs-keyword">mkdir</span> WEB-<span class="hljs-keyword">INF</span><br><span class="hljs-keyword">cd</span> WEB-<span class="hljs-keyword">INF</span><br>vim web.xml<br><span class="hljs-keyword">cd</span> ..<br>vim a.jsp<br></code></pre></td></tr></table></figure>
 
@@ -513,26 +552,32 @@
 <figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs erb"><span class="language-xml">&lt;%</span><span class="language-ruby">@ page language=<span class="hljs-string">&quot;java&quot;</span> contentType=<span class="hljs-string">&quot;text/html; charset=UTF-8&quot;</span> pageEncoding=<span class="hljs-string">&quot;UTF-8&quot;</span> </span><span class="language-xml">%&gt;</span><br><span class="language-xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span> <span class="hljs-keyword">PUBLIC</span> <span class="hljs-string">&quot;-//W3C//DTD HTML 4.0.1 Transitional//EN&quot;</span> <span class="hljs-string">&quot;http://www.23.org/TR/html/loose.dtd&quot;</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;Content-Type&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;text/html; charset=UTF-8&quot;</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Insert title here<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span></span><br><span class="language-xml">        -------------------welcome------------------</span><br><span class="language-xml">        &lt;%=</span><span class="language-ruby"><span class="hljs-string">&quot;I am in docker tomcat self&quot;</span></span><span class="language-xml">%&gt;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span></span><br><span class="language-xml">        &lt;%</span><span class="language-ruby"> <span class="hljs-title class_">System</span>.out.println(<span class="hljs-string">&quot;=============docker tomcat self&quot;</span>);</span><span class="language-xml">%&gt;</span><br><span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 
 <p>测试：在浏览器访问<code>localhost:9080/test/a.jsp</code></p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204519883.png" srcset="/img/loading.gif" lazyload alt="image-20230808204519883"></p>
-<h3 id="4-小总结"><a href="#4-小总结" class="headerlink" title="4. 小总结"></a>4. 小总结</h3><p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204533636.png" srcset="/img/loading.gif" lazyload alt="image-20230808204533636"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204519883.png" srcset="/img/loading.gif" lazyload class title="image-20230808204519883">
+
+<h3 id="4-小总结"><a href="#4-小总结" class="headerlink" title="4. 小总结"></a>4. 小总结</h3><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204533636.png" srcset="/img/loading.gif" lazyload class title="image-20230808204533636">
+
 <h2 id="六、Docker常用安装"><a href="#六、Docker常用安装" class="headerlink" title="六、Docker常用安装"></a>六、Docker常用安装</h2><h3 id="1-安装tomcat"><a href="#1-安装tomcat" class="headerlink" title="1. 安装tomcat"></a>1. 安装tomcat</h3><ul>
 <li><code>docker search tomcat</code> ：docker hub上面查找tomcat镜像</li>
 </ul>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204550592.png" srcset="/img/loading.gif" lazyload alt="image-20230808204550592"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204550592.png" srcset="/img/loading.gif" lazyload class title="image-20230808204550592">
+
 <p><code>docker pull tomcat</code>：从docker hub上拉取tomcat镜像到本地</p>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204601371.png" srcset="/img/loading.gif" lazyload alt="image-20230808204601371"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204601371.png" srcset="/img/loading.gif" lazyload class title="image-20230808204601371">
+
 <ul>
 <li><code>docker images</code>：查看你是否有拉取到tomcat</li>
 <li><code>docker run -it -p 8080:8080 tomcat</code>：运行镜像</li>
 </ul>
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204612135.png" srcset="/img/loading.gif" lazyload alt="image-20230808204612135"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204612135.png" srcset="/img/loading.gif" lazyload class title="image-20230808204612135">
+
 <h3 id="2-安装MySQL"><a href="#2-安装MySQL" class="headerlink" title="2. 安装MySQL"></a>2. 安装MySQL</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">docker search mysql <span class="hljs-comment"># docker hub上面查找mysql镜像</span><br>docker pull mysql:<span class="hljs-number">5.6</span> <span class="hljs-comment"># 从docker hub上拉取mysql:5.6镜像到本地</span><br>docker images <span class="hljs-comment"># 查看你是否有拉取到mysql</span><br><span class="hljs-comment"># 运行镜像</span><br>docker run -p <span class="hljs-number">12345</span>:<span class="hljs-number">3306</span> --name mysql -v <span class="hljs-regexp">/zza/my</span>sql<span class="hljs-regexp">/conf:/</span>etc<span class="hljs-regexp">/mysql/</span>conf.d -v <span class="hljs-regexp">/zza/my</span>sql<span class="hljs-regexp">/logs:/</span>logs -v <span class="hljs-regexp">/zza/my</span>sql<span class="hljs-regexp">/data:/</span>var<span class="hljs-regexp">/lib/my</span>sql -e MYSQL_ROOT_PASSWORD=<span class="hljs-number">123456</span> -d mysql:<span class="hljs-number">5.6</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="3-安装redis"><a href="#3-安装redis" class="headerlink" title="3. 安装redis"></a>3. 安装redis</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs awk">docker search redis <span class="hljs-comment"># docker hub上面查找redis镜像</span><br>docker pull redis:<span class="hljs-number">3.2</span> <span class="hljs-comment"># 从docker hub上拉取redis:3.2镜像到本地</span><br>docker images <span class="hljs-comment"># 查看你是否有拉取到redis</span><br><span class="hljs-comment"># 运行镜像</span><br>docker run -p <span class="hljs-number">6379</span>:<span class="hljs-number">6379</span> -v <span class="hljs-regexp">/zza/my</span>redis<span class="hljs-regexp">/data:/</span>data -v <span class="hljs-regexp">/zza/my</span>redis<span class="hljs-regexp">/conf/</span>redis.conf:<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/etc/</span>redis<span class="hljs-regexp">/redis.conf -d redis:3.2 redis-server /u</span>sr<span class="hljs-regexp">/local/</span>etc<span class="hljs-regexp">/redis/</span>redis.conf --appendonly yes<br><span class="hljs-comment"># 在/zza/myredis/conf/redis.conf目录下新建redis.conf文件</span><br>vim <span class="hljs-regexp">/zza/my</span>redis<span class="hljs-regexp">/conf/</span>redis.conf/redis.conf<br><span class="hljs-comment"># 添加redis配置文件</span><br><span class="hljs-comment"># 进入reids并添加键值对</span><br>docker exec -it redis容器id redis-cli<br></code></pre></td></tr></table></figure>
 
 <h2 id="七、本地镜像推送到阿里云"><a href="#七、本地镜像推送到阿里云" class="headerlink" title="七、本地镜像推送到阿里云"></a>七、本地镜像推送到阿里云</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs vim">docker run -it 镜像<br>docker -<span class="hljs-keyword">a</span> zuzhiang -<span class="hljs-keyword">m</span> <span class="hljs-string">&quot;new mycentos 1.4 from 1.3&quot;</span> 镜像id 新镜像名<br># 在阿里云开发者平台创建仓库镜像<br># 将镜像推送到registry<br>docker --username= registry.<span class="hljs-keyword">cn</span>-hangzhou.aliyuncs.<span class="hljs-keyword">com</span><br>docker <span class="hljs-keyword">tag</span> 镜像id registry.<span class="hljs-keyword">cn</span>-hangzhou.aliyuncs.<span class="hljs-keyword">com</span>/zuzhiang/centos.<span class="hljs-number">1.4</span><br>docker push registry.<span class="hljs-keyword">cn</span>-hangzhou.aliyuncs.<span class="hljs-keyword">com</span>/zuzhiang/centos.<span class="hljs-number">1.4</span><br># 在https://dev.aliyun.<span class="hljs-keyword">com</span>查找<br>docker pull registry.<span class="hljs-keyword">cn</span>-hangzhou.aliyuncs.<span class="hljs-keyword">com</span>/zuzhiang/centos.<span class="hljs-number">1.4</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/Workspaces\hexo\source_posts\尚硅谷Docker\image-20230808204717043.png" srcset="/img/loading.gif" lazyload alt="image-20230808204717043"></p>
+<img src="/2023/08/06/%E5%B0%9A%E7%A1%85%E8%B0%B7Docker/image-20230808204717043.png" srcset="/img/loading.gif" lazyload class title="image-20230808204717043">
+
 <h1 id="Docker高级篇"><a href="#Docker高级篇" class="headerlink" title="Docker高级篇"></a>Docker高级篇</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37151886/article/details/122564779">docker笔记高级篇2022新版_docker最新版本 cluster store_newProxyInstance的博客-CSDN博客</a></p>
 
                 
